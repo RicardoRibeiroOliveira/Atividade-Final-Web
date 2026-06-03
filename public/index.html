@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeekShop | Artigos geek e colecionáveis</title>
+    <meta
+      name="description"
+      content="GeekShop é uma loja fictícia de artigos geek criada para o módulo 8 da disciplina de Programação Web."
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <div class="container header-grid">
+        <div>
+          <p class="eyebrow">Projeto integrador · FATEC ADS</p>
+          <h1>GeekShop</h1>
+        </div>
+
+        <nav aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo-principal">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="pill">Baseado nos módulos 1 a 8</p>
+            <h2>Uma vitrine geek simples, responsiva e com API própria.</h2>
+            <p>
+              Este projeto reúne HTML semântico, CSS mobile first, JavaScript com DOM,
+              consumo de API com <code>fetch</code>, autenticação JWT e CRUD de produtos.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#produtos">Ver produtos</a>
+              <a class="button secondary" href="#painel-admin">Área admin</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Resumo do projeto">
+            <h3>Destaques</h3>
+            <ul>
+              <li>Layout responsivo para mobile, tablet e desktop</li>
+              <li>Cartão de produtos carregado via API</li>
+              <li>Feedback visual de loading e erro</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="produtos">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Catálogo</p>
+              <h2>Artigos geek em destaque</h2>
+            </div>
+            <p class="section-note">
+              Os produtos vêm da API do projeto. Você pode consumir, cadastrar e remover itens.
+            </p>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-field" for="filtro-produtos">
+              <span>Buscar</span>
+              <input id="filtro-produtos" type="search" placeholder="Ex.: camiseta, caneca..." />
+            </label>
+
+            <button id="recarregar-produtos" class="button secondary" type="button">Recarregar</button>
+          </div>
+
+          <div id="estado-produtos" class="state state-info" role="status" aria-live="polite">
+            Carregando produtos...
+          </div>
+
+          <div id="lista-produtos" class="product-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section split-section" id="sobre">
+        <div class="container split-grid">
+          <article class="content-card">
+            <p class="eyebrow">Sobre a proposta</p>
+            <h2>Feito para demonstrar os fundamentos do módulo 8</h2>
+            <p>
+              A ideia é servir como uma base curta e limpa para a apresentação: o front é
+              puro HTML/CSS/JS, e o back usa Node.js, Express, MongoDB, Mongoose e JWT.
+            </p>
+          </article>
+
+          <article class="content-card">
+            <p class="eyebrow">Tecnologias</p>
+            <ul class="tag-list" aria-label="Tecnologias usadas">
+              <li>HTML semântico</li>
+              <li>CSS responsivo</li>
+              <li>DOM e eventos</li>
+              <li>Fetch API</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>Mongoose</li>
+              <li>JWT</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="painel-admin">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Acesso</p>
+              <h2>Entrar ou criar conta</h2>
+            </div>
+            <p class="section-note">
+              O painel administrativo libera o CRUD de produtos. Para testes, use o admin padrão.
+            </p>
+          </div>
+
+          <div class="auth-grid">
+            <form id="form-login" class="content-card form-card">
+              <h3>Login</h3>
+              <label>
+                E-mail
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label>
+                Senha
+                <input type="password" name="password" autocomplete="current-password" required />
+              </label>
+              <button class="button primary" type="submit">Entrar</button>
+            </form>
+
+            <form id="form-register" class="content-card form-card">
+              <h3>Criar conta</h3>
+              <label>
+                Nome
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label>
+                E-mail
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label>
+                Senha
+                <input type="password" name="password" autocomplete="new-password" required />
+              </label>
+              <button class="button secondary" type="submit">Cadastrar</button>
+            </form>
+          </div>
+
+          <div id="auth-feedback" class="state" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" id="crud">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Admin</p>
+              <h2>CRUD de produtos</h2>
+            </div>
+            <p class="section-note">Disponível apenas para usuário autenticado com perfil admin.</p>
+          </div>
+
+          <form id="form-product" class="content-card form-card">
+            <input type="hidden" name="id" />
+            <div class="form-grid">
+              <label>
+                Nome
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                Categoria
+                <input type="text" name="category" required />
+              </label>
+              <label>
+                Preço
+                <input type="number" name="price" step="0.01" min="0" required />
+              </label>
+              <label>
+                Estoque
+                <input type="number" name="stock" step="1" min="0" required />
+              </label>
+              <label class="form-span-2">
+                Imagem
+                <input type="url" name="imageUrl" required />
+              </label>
+              <label class="form-span-2">
+                Descrição
+                <textarea name="description" rows="4" required></textarea>
+              </label>
+            </div>
+            <div class="hero-actions">
+              <button class="button primary" type="submit">Salvar produto</button>
+              <button id="limpar-formulario" class="button secondary" type="button">Limpar</button>
+            </div>
+          </form>
+
+          <div id="admin-feedback" class="state" role="status" aria-live="polite"></div>
+          <div id="painel-lista-produtos" class="admin-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="contato">
+        <div class="container">
+          <article class="content-card">
+            <p class="eyebrow">Contato</p>
+            <h2>Projeto acadêmico</h2>
+            <p>Use este espaço para colocar nome, turma e informações da apresentação final.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>GeekShop · Projeto acadêmico para a disciplina de Programação Web</p>
+      </div>
+    </footer>
+
+    <template id="template-produto">
+      <article class="product-card">
+        <img class="product-image" alt="" />
+        <div class="product-content">
+          <p class="product-category"></p>
+          <h3 class="product-name"></h3>
+          <p class="product-description"></p>
+          <div class="product-footer">
+            <strong class="product-price"></strong>
+            <button class="button small add-cart" type="button">Adicionar</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
